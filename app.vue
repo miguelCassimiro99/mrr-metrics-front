@@ -90,9 +90,12 @@ const sendFile = async () => {
 
     <hr />
 
-    <section class="container" v-if="data">
+    <section class="container">
       <span>Fetched Data</span>
       <pre>{{ data }}</pre>
+      <ClientOnly>
+        <ChartComponent />
+      </ClientOnly>
     </section>
   </div>
 </template>
