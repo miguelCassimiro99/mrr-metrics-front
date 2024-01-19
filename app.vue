@@ -90,12 +90,6 @@ const sendFile = async () => {
 
     <hr />
 
-    <section class="container">
-      <span>Fetched Data</span>
-      <pre>{{ data }}</pre>
-      <ClientOnly>
-        <ChartComponent />
-      </ClientOnly>
-    </section>
+    <section class="container"></section>
   </div>
 </template>
