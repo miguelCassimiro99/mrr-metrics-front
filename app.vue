@@ -62,7 +62,7 @@ const examplesCards = [
   {
     isMonetary: false,
     countValue: 4581,
-    description: "Paying customers",
+    description: "MRR today",
   },
   {
     isMonetary: true,
@@ -70,16 +70,44 @@ const examplesCards = [
     description: "MRR yesterday",
   },
 ];
+
+const lastColumnExample = [
+  {
+    isMonetary: true,
+    countValue: 984600,
+    description: "Total MRR",
+  },
+  {
+    isMonetary: false,
+    countValue: 4581,
+    description: "Paying customers",
+  },
+  {
+    isMonetary: false,
+    countValue: 89900,
+    description: "Mensal plan customers",
+  },
+  {
+    isMonetary: true,
+    countValue: 89900,
+    description: "Annual plan customers",
+  },
+  {
+    isMonetary: false,
+    countValue: 89900,
+    description: "Total users",
+  },
+];
 </script>
 
 <template>
   <main
-    class="w-[100vw] min-h-screen md:h-screen overflow-y-auto overflow-x-hidden bg-secondary flex flex-col-reverse md:flex-col p-2 gap-2"
+    class="w-[100vw] min-h-screen overflow-y-auto overflow-x-hidden bg-secondary flex flex-col-reverse md:flex-col p-2 gap-2"
   >
     <header class="h-20 border bg-secondary"></header>
 
     <section
-      class="dashboard-section w-full h-full flex flex-col overflow-hidden"
+      class="dashboard-section w-full h-full flex flex-col lg:overflow-hidden lg:flex-row gap-2"
     >
       <div class="column-quarter flex flex-col h-full w-full gap-2">
         <div class="row gap-2 flex flex-col md:flex-row">
@@ -110,11 +138,22 @@ const examplesCards = [
             </ClientOnly>
           </div>
         </div>
-
-        <div class="last-column"></div>
       </div>
 
-      <div class="column-total w-1/5 h-full"></div>
+      <div
+        class="column-total w-full gap-4 lg:w-1/5 h-fit rounded-[8px] bg-[#272953] p-2 flex flex-wrap justify-between lg:gap-4 lg:flex-col"
+      >
+        <div
+          v-for="indicator in lastColumnExample"
+          :key="indicator.description"
+        >
+          <ValueDescription
+            :count-value="indicator.countValue"
+            :description="indicator.description"
+            :is-monetary="indicator.isMonetary"
+          />
+        </div>
+      </div>
     </section>
   </main>
 </template>

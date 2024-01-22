@@ -5,3 +5,7 @@
 .dev-view {
   @apply border border-pink-500;
 }
+
+.mrr-table-td {
+  @apply p-2 md:p-1 capitalize text-xs md:text-base text-gray-200 font-light;
+}

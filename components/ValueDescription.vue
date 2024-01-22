@@ -17,7 +17,9 @@ const valueFiltered = computed(() => {
 <template>
   <div class="flex justify-start items-end text-gray-100 gap-1">
     <span v-if="props.isMonetary" class="text-xs md:text-lg">R$</span>
-    <span class="value text-2xl md:text-5xl">{{ valueFiltered }}</span>
+    <span class="value text-2xl md:text-5xl lg:text-4xl">{{
+      valueFiltered
+    }}</span>
   </div>
   <span class="description text-xs md:text-sm text-gray-100">{{
     props.description

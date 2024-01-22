@@ -32,6 +32,27 @@ const exampleTable = [
     plan_value: 199.99,
     start_date: "01/04/2023",
   },
+  {
+    status: "canceled",
+    user_id: 126,
+    plan: "mensal",
+    plan_value: 199.99,
+    start_date: "01/04/2023",
+  },
+  {
+    status: "canceled",
+    user_id: 126,
+    plan: "mensal",
+    plan_value: 199.99,
+    start_date: "01/04/2023",
+  },
+  {
+    status: "canceled",
+    user_id: 126,
+    plan: "mensal",
+    plan_value: 199.99,
+    start_date: "01/04/2023",
+  },
 ];
 
 const parsedValue = function (originalValue: number) {
@@ -50,7 +71,7 @@ const parsedValue = function (originalValue: number) {
   >
     <h3 class="text-lg text-gray-100">Recent MRR changes</h3>
 
-    <div class="relative overflow-x-auto w-full">
+    <div class="relative overflow-auto w-full">
       <table class="w-full text-sm text-left rtl:text-right text-gray-100">
         <thead class="text-xs text-gray-400 uppercase bg-gray-50">
           <tr>
@@ -70,7 +91,7 @@ const parsedValue = function (originalValue: number) {
             v-for="user in exampleTable"
             :key="user.user_id"
           >
-            <td class="p-3 font-medium whitespace-nowrap text-gray-400">
+            <td class="mrr-table-td">
               <span class="w-4 h-5">
                 <Icon
                   :name="
@@ -85,16 +106,14 @@ const parsedValue = function (originalValue: number) {
                 />
               </span>
             </td>
-            <td class="p-3 font-medium whitespace-nowrap text-gray-100">
+            <td class="mrr-table-td">
               {{ user.user_id }}
             </td>
-            <td class="p-3 font-medium whitespace-nowrap text-gray-100">
+            <td class="mrr-table-td">
               {{ user.plan }}
             </td>
-            <td class="p-3 font-medium whitespace-nowrap text-gray-100">
-              R$ {{ parsedValue(user.plan_value) }}
-            </td>
-            <td class="p-3 font-medium whitespace-nowrap text-gray-100">
+            <td class="mrr-table-td">R$ {{ parsedValue(user.plan_value) }}</td>
+            <td class="mrr-table-td">
               {{ user.start_date }}
             </td>
           </tr>
