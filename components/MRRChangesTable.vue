@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { parse } from "vue/compiler-sfc";
+
 const columns = ["Status", "ID usuário", "Plano", "Valor", "Data de início"];
 
 const exampleTable = [
@@ -31,20 +33,30 @@ const exampleTable = [
     start_date: "01/04/2023",
   },
 ];
+
+const parsedValue = function (originalValue: number) {
+  return computed(() => {
+    if (originalValue >= 1000000)
+      return (originalValue / 1000000).toFixed(1) + "M";
+    if (originalValue >= 1000) return (originalValue / 1000).toFixed(1) + "k";
+
+    return originalValue;
+  });
+};
 </script>
 <template>
   <div
-    class="flex-1 h-[400px] flex flex-col items-start justify-start gap-4 rounded-[8px] bg-[#272953] p-2"
+    class="flex-1 h-[400px] flex flex-col items-start justify-start gap-4 rounded-[8px] bg-[#272953] p-2 overflow-x-auto"
   >
     <h3 class="text-lg text-gray-100">Recent MRR changes</h3>
 
-    <div class="relative overflow-x-auto">
+    <div class="relative overflow-x-auto w-full">
       <table class="w-full text-sm text-left rtl:text-right text-gray-100">
         <thead class="text-xs text-gray-400 uppercase bg-gray-50">
           <tr>
             <th
               scope="col"
-              class="px-3 py-2"
+              class="px-1 py-0 md:py-2 md:px-2 font-medium"
               v-for="(col, index) in columns"
               :key="col"
             >
@@ -58,8 +70,20 @@ const exampleTable = [
             v-for="user in exampleTable"
             :key="user.user_id"
           >
-            <td class="p-3 font-medium whitespace-nowrap text-gray-100">
-              {{ user.status }}
+            <td class="p-3 font-medium whitespace-nowrap text-gray-400">
+              <span class="w-4 h-5">
+                <Icon
+                  :name="
+                    user.status === 'active'
+                      ? 'material-symbols:arrow-circle-up'
+                      : 'bitcoin-icons:cross-filled'
+                  "
+                  class="w-4 h-4"
+                  :class="
+                    user.status === 'active' ? 'text-gray-100' : 'text-red-600'
+                  "
+                />
+              </span>
             </td>
             <td class="p-3 font-medium whitespace-nowrap text-gray-100">
               {{ user.user_id }}
@@ -68,7 +92,7 @@ const exampleTable = [
               {{ user.plan }}
             </td>
             <td class="p-3 font-medium whitespace-nowrap text-gray-100">
-              {{ user.plan_value }}
+              R$ {{ parsedValue(user.plan_value) }}
             </td>
             <td class="p-3 font-medium whitespace-nowrap text-gray-100">
               {{ user.start_date }}

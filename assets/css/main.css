@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.dev-view {
+  @apply border border-pink-500;
+}

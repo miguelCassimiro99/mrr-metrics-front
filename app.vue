@@ -73,13 +73,19 @@ const examplesCards = [
 </script>
 
 <template>
-  <main class="w-[100vw] h-screen bg-secondary flex flex-col p-2 gap-2">
+  <main
+    class="w-[100vw] min-h-screen md:h-screen overflow-y-auto overflow-x-hidden bg-secondary flex flex-col-reverse md:flex-col p-2 gap-2"
+  >
     <header class="h-20 border bg-secondary"></header>
 
-    <section class="dashboard-section w-full h-full flex">
+    <section
+      class="dashboard-section w-full h-full flex flex-col overflow-hidden"
+    >
       <div class="column-quarter flex flex-col h-full w-full gap-2">
-        <div class="row gap-2 flex">
-          <div class="col-monthly flex flex-col gap-2 w-1/3 h-fit">
+        <div class="row gap-2 flex flex-col md:flex-row">
+          <div
+            class="col-monthly flex flex-row overflow-x-auto w-full md:flex-col md:w-1/3 gap-2 h-fit"
+          >
             <Card v-for="(item, index) in examplesCards">
               <ValueDescription
                 :count-value="item.countValue"
@@ -95,17 +101,17 @@ const examplesCards = [
           </div>
         </div>
 
-        <div class="row flex-1 flex gap-2 h-[400px]">
+        <div class="row flex-1 flex flex-col md:flex-row gap-2 h-[400px]">
           <MRRChangesTable />
 
-          <div class="mrr-graph flex w-1/2 h-[400px]">
+          <div class="mrr-graph flex w-full md:w-1/2 h-[400px]">
             <ClientOnly>
               <ChartComponent height="400px" />
             </ClientOnly>
           </div>
         </div>
 
-        <div></div>
+        <div class="last-column"></div>
       </div>
 
       <div class="column-total w-1/5 h-full"></div>
